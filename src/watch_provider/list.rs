@@ -42,7 +42,6 @@ pub struct WatchProviderListResult {
     pub inner: WatchProvider,
 }
 
-#[async_trait::async_trait]
 impl crate::prelude::Command for WatchProviderList {
     type Output = Vec<WatchProviderListResult>;
 
@@ -62,7 +61,10 @@ impl crate::prelude::Command for WatchProviderList {
         params
     }
 
-    async fn execute(&self, client: &crate::Client) -> Result<Self::Output, crate::error::Error> {
+    async fn execute<'a>(
+        &'a self,
+        client: &'a crate::Client,
+    ) -> Result<Self::Output, crate::error::Error> {
         #[derive(Deserialize)]
         struct Result {
             pub results: Vec<WatchProviderListResult>,

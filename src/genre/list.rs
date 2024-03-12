@@ -34,7 +34,6 @@ impl GenreList {
     }
 }
 
-#[async_trait::async_trait]
 impl crate::prelude::Command for GenreList {
     type Output = Vec<Genre>;
 
@@ -50,7 +49,10 @@ impl crate::prelude::Command for GenreList {
         }
     }
 
-    async fn execute(&self, client: &crate::Client) -> Result<Self::Output, crate::error::Error> {
+    async fn execute<'a>(
+        &'a self,
+        client: &'a crate::Client,
+    ) -> Result<Self::Output, crate::error::Error> {
         client
             .execute::<GenreResult>(self.path().as_ref(), self.params())
             .await

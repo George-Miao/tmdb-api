@@ -62,7 +62,6 @@ impl ChangeList {
     }
 }
 
-#[async_trait::async_trait]
 impl crate::prelude::Command for ChangeList {
     type Output = crate::common::PaginatedResult<super::Change>;
 
@@ -84,7 +83,10 @@ impl crate::prelude::Command for ChangeList {
         res
     }
 
-    async fn execute(&self, client: &crate::Client) -> Result<Self::Output, crate::error::Error> {
+    async fn execute<'a>(
+        &'a self,
+        client: &'a crate::Client,
+    ) -> Result<Self::Output, crate::error::Error> {
         client.execute(self.path().as_ref(), self.params()).await
     }
 }

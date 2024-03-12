@@ -1,31 +1,25 @@
-#[derive(Debug, Deserialize, Serialize)]
+use thiserror::Error;
+
+#[derive(Debug, Deserialize, Serialize, Error)]
+#[error("Body error (status: {status_code}): {status_message}")]
 pub struct ServerOtherBodyError {
     pub status_code: u16,
     pub status_message: String,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Error)]
+#[error("Validation error: {}", errors.join(", "))]
 pub struct ServerValidationBodyError {
     pub errors: Vec<String>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Error)]
 #[serde(untagged)]
 pub enum ServerBodyError {
-    Other(ServerOtherBodyError),
-    Validation(ServerValidationBodyError),
-}
-
-impl From<ServerOtherBodyError> for ServerBodyError {
-    fn from(inner: ServerOtherBodyError) -> Self {
-        Self::Other(inner)
-    }
-}
-
-impl From<ServerValidationBodyError> for ServerBodyError {
-    fn from(inner: ServerValidationBodyError) -> Self {
-        Self::Validation(inner)
-    }
+    #[error("{0}")]
+    Other(#[from] ServerOtherBodyError),
+    #[error("{0}")]
+    Validation(#[from] ServerValidationBodyError),
 }
 
 impl ServerBodyError {
@@ -44,16 +38,20 @@ impl ServerBodyError {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Error)]
+#[error("Server error(code: {code}): {body}")]
 pub struct ServerError {
     pub code: u16,
     pub body: ServerBodyError,
 }
 
 #[cfg(feature = "commands")]
-#[derive(Debug)]
+#[derive(Debug, Error)]
 pub enum Error {
+    #[error("Reqwest error: {0}")]
     Reqwest(reqwest::Error),
+
+    #[error("{0}")]
     Server(ServerError),
 }
 

@@ -27,7 +27,6 @@ impl CertificationList {
     }
 }
 
-#[async_trait::async_trait]
 impl crate::prelude::Command for CertificationList {
     type Output = HashMap<String, Vec<Certification>>;
 
@@ -39,7 +38,10 @@ impl crate::prelude::Command for CertificationList {
         Vec::new()
     }
 
-    async fn execute(&self, client: &crate::Client) -> Result<Self::Output, crate::error::Error> {
+    async fn execute<'a>(
+        &'a self,
+        client: &'a crate::Client,
+    ) -> Result<Self::Output, crate::error::Error> {
         client
             .execute::<CertificationResult>(self.path().as_ref(), self.params())
             .await
