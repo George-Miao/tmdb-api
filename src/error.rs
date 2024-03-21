@@ -2,6 +2,7 @@ use thiserror::Error;
 
 #[derive(Debug, Deserialize, Serialize, Error)]
 #[error("Body error (status: {status_code}): {status_message}")]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct ServerOtherBodyError {
     pub status_code: u16,
     pub status_message: String,
@@ -9,6 +10,7 @@ pub struct ServerOtherBodyError {
 
 #[derive(Debug, Deserialize, Serialize, Error)]
 #[error("Validation error: {}", errors.join(", "))]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct ServerValidationBodyError {
     pub errors: Vec<String>,
 }

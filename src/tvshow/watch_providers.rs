@@ -21,6 +21,7 @@ use crate::watch_provider::WatchProviderResult;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct TVShowWatchProviders {
     /// ID of the movie.
     pub tv_id: u64,

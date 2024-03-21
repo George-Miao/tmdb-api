@@ -19,6 +19,7 @@ use std::borrow::Cow;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CompanyImages {
     /// ID of the Company
     pub company_id: u64,
@@ -31,6 +32,7 @@ impl CompanyImages {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CompanyImage {
     pub aspect_ratio: f64,
     pub file_path: String,
@@ -43,6 +45,7 @@ pub struct CompanyImage {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CompanyImagesResult {
     pub id: u64,
     pub logos: Vec<CompanyImage>,

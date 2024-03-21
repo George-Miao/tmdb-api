@@ -20,6 +20,7 @@ use std::borrow::Cow;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieVideos {
     /// ID of the movie.
     pub movie_id: u64,
@@ -42,6 +43,7 @@ impl MovieVideos {
 }
 
 #[derive(Debug, Deserialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieVideosResult {
     pub id: u64,
     pub results: Vec<Video>,

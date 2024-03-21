@@ -19,6 +19,7 @@ use std::borrow::Cow;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieAlternativeTitles {
     /// ID of the Movie
     pub movie_id: u64,
@@ -41,6 +42,7 @@ impl MovieAlternativeTitles {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieAlternativeTitle {
     pub iso_3166_1: String,
     pub title: String,
@@ -52,6 +54,7 @@ pub struct MovieAlternativeTitle {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieAlternativeTitlesResult {
     pub id: u64,
     pub titles: Vec<MovieAlternativeTitle>,

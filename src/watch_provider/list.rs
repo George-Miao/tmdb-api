@@ -6,6 +6,7 @@ use super::WatchProvider;
 
 /// Command to list watch providers
 #[derive(Clone, Debug)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct WatchProviderList {
     pub media_type: MediaType,
     /// ISO 3166-1 alpha-2 value to filter the results for one country.
@@ -35,6 +36,7 @@ impl WatchProviderList {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct WatchProviderListResult {
     /// A hash map of display priority by country code
     pub display_priorities: HashMap<String, u64>,

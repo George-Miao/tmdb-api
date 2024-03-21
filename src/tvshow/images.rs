@@ -21,6 +21,7 @@ use crate::common::image::Image;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct TVShowImages {
     /// ID of the show
     pub tvshow_id: u64,
@@ -43,6 +44,7 @@ impl TVShowImages {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct TVShowImagesResult {
     pub id: u64,
     pub backdrops: Vec<Image>,

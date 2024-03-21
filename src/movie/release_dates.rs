@@ -21,6 +21,7 @@ use crate::common::release_date::LocatedReleaseDates;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieReleaseDates {
     /// ID of the movie.
     pub movie_id: u64,
@@ -33,6 +34,7 @@ impl MovieReleaseDates {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieReleaseDatesResult {
     pub id: u64,
     pub results: Vec<LocatedReleaseDates>,

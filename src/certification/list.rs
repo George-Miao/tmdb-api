@@ -13,6 +13,7 @@ pub(crate) struct CertificationResult {
 
 /// Command to list certifications
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CertificationList {
     path: &'static str,
 }

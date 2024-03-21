@@ -21,6 +21,7 @@ use crate::common::credits::{Cast, Crew};
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieCredits {
     /// ID of the Movie
     pub movie_id: u64,
@@ -43,6 +44,7 @@ impl MovieCredits {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieCreditsResult {
     pub id: u64,
     pub cast: Vec<Cast>,

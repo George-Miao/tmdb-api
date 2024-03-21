@@ -8,6 +8,7 @@ const PERSON_PATH: &str = "/person/changes";
 
 /// Command to list changes
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct ChangeList {
     path: &'static str,
     /// Filter the results with a start date.

@@ -49,6 +49,7 @@ use crate::company::CompanyShort;
 use crate::genre::Genre;
 
 #[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieBase {
     pub id: u64,
     pub title: String,
@@ -67,6 +68,7 @@ pub struct MovieBase {
 }
 
 #[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieShort {
     #[serde(flatten)]
     pub inner: MovieBase,
@@ -74,6 +76,7 @@ pub struct MovieShort {
 }
 
 #[derive(Clone, Debug, PartialEq, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct Movie {
     #[serde(flatten)]
     pub inner: MovieBase,

@@ -21,6 +21,7 @@ const PATH: &str = "/search/movie";
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieSearch {
     /// Text query to search.
     pub query: String,

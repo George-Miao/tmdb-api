@@ -21,6 +21,7 @@ use crate::common::PaginatedResult;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieLists {
     /// ID of the movie.
     pub movie_id: u64,
@@ -51,6 +52,7 @@ impl MovieLists {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieList {
     pub id: u64,
     pub name: String,

@@ -12,6 +12,7 @@ pub(crate) struct GenreResult {
 
 /// Command to list genres
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct GenreList {
     path: &'static str,
     /// ISO 639-1 value to display translated data for the fields that support it.

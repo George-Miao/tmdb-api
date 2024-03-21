@@ -20,6 +20,7 @@ use std::borrow::Cow;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CollectionDetails {
     /// ID of the collection
     pub collection_id: u64,
@@ -28,6 +29,7 @@ pub struct CollectionDetails {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CollectionDetailsResult {
     #[serde(flatten)]
     pub inner: super::CollectionBase,
@@ -35,6 +37,7 @@ pub struct CollectionDetailsResult {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct Media {
     pub id: u64,
     pub media_type: MediaType,

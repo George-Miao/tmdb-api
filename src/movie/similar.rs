@@ -19,6 +19,7 @@ use std::borrow::Cow;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct GetSimilarMovies {
     /// ID of the movie
     pub movie_id: u64,

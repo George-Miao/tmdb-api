@@ -6,6 +6,7 @@ pub mod details;
 pub mod images;
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CompanyShort {
     pub id: u64,
     pub name: String,
@@ -15,6 +16,7 @@ pub struct CompanyShort {
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct Company {
     #[serde(flatten)]
     pub inner: CompanyShort,

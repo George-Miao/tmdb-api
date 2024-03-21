@@ -19,6 +19,7 @@ use std::borrow::Cow;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieExternalIds {
     /// ID of the movie
     pub movie_id: u64,
@@ -31,6 +32,7 @@ impl MovieExternalIds {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieExternalIdsResult {
     pub id: u64,
     #[serde(deserialize_with = "crate::util::empty_string::deserialize")]

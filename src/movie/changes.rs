@@ -20,6 +20,7 @@ use std::borrow::Cow;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieChanges {
     /// ID of the Movie
     pub movie_id: u64,
@@ -58,12 +59,14 @@ impl MovieChanges {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieChange {
     pub key: String,
     pub items: Vec<MovieChangeItem>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieChangeItem {
     pub id: String,
     pub action: String,
@@ -76,6 +79,7 @@ pub struct MovieChangeItem {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieChangesResult {
     pub changes: Vec<MovieChange>,
 }

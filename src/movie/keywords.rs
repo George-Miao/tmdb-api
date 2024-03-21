@@ -21,6 +21,7 @@ use crate::common::keyword::Keyword;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieKeywords {
     /// ID of the movie
     pub movie_id: u64,
@@ -33,6 +34,7 @@ impl MovieKeywords {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieKeywordsResult {
     pub id: u64,
     pub keywords: Vec<Keyword>,

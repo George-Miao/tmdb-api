@@ -25,6 +25,7 @@ use crate::common::PaginatedResult;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieNowPlaying {
     /// ISO 639-1 value to display translated data for the fields that support it.
     pub language: Option<String>,
@@ -52,6 +53,7 @@ impl MovieNowPlaying {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct DateRange {
     #[serde(deserialize_with = "crate::util::optional_date::deserialize")]
     pub maximum: Option<NaiveDate>,
@@ -60,6 +62,7 @@ pub struct DateRange {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct MovieNowPlayingResult {
     #[serde(flatten)]
     pub inner: PaginatedResult<super::MovieShort>,

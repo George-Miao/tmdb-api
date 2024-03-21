@@ -4,6 +4,7 @@ use std::collections::HashMap;
 pub mod list;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct WatchProvider {
     pub provider_id: u64,
     pub provider_name: String,
@@ -12,6 +13,7 @@ pub struct WatchProvider {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct LocatedWatchProvider {
     pub link: String,
     #[serde(default)]
@@ -23,6 +25,7 @@ pub struct LocatedWatchProvider {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct WatchProviderResult {
     pub id: u64,
     pub results: HashMap<String, LocatedWatchProvider>,

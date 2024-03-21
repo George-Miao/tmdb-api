@@ -19,6 +19,7 @@ use std::borrow::Cow;
 /// }
 /// ```
 #[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CompanyAlternativeNames {
     /// ID of the Company
     pub company_id: u64,
@@ -31,6 +32,7 @@ impl CompanyAlternativeNames {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CompanyAlternativeName {
     pub name: String,
     #[serde(
@@ -41,6 +43,7 @@ pub struct CompanyAlternativeName {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "ts", derive(ts_rs::TS))]
 pub struct CompanyAlternativeNamesResult {
     pub id: u64,
     pub results: Vec<CompanyAlternativeName>,
